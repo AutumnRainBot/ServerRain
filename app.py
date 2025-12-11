@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Stockage des commandes par client
 commands = {}  # clientid: {"cmd": "commande", "nonce": 123, "last_seen": datetime}
 
-HEARTBEAT_TIMEOUT = timedelta(seconds=8)  # client offline après 30s
+HEARTBEAT_TIMEOUT = timedelta(seconds=30)  # client offline après 30s
 
 @app.route('/getcommand/<clientid>', methods=['GET'])
 def get_command(clientid):
